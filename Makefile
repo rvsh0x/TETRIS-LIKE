@@ -33,28 +33,28 @@ endif
 all: tetris
 
 # Règle pour compiler l'exécutable
-tetris: main.o affichage.o menu.o jeu.o sauvegarde.o
-	$(CC) -o tetris main.o affichage.o menu.o jeu.o sauvegarde.o $(LDFLAGS)
+tetris: src/main.o src/affichage.o src/menu.o src/jeu.o src/sauvegarde.o
+	$(CC) -o tetris src/main.o src/affichage.o src/menu.o src/jeu.o src/sauvegarde.o $(LDFLAGS)
 
 # Règles pour compiler les fichiers objets
-main.o: main.c affichage.h menu.h jeu.h
-	$(CC) $(CFLAGS) -c main.c
+src/main.o: src/main.c src/affichage.h src/menu.h src/jeu.h
+	$(CC) $(CFLAGS) -c src/main.c -o src/main.o
 
-affichage.o: affichage.c affichage.h
-	$(CC) $(CFLAGS) -c affichage.c
+src/affichage.o: src/affichage.c src/affichage.h
+	$(CC) $(CFLAGS) -c src/affichage.c -o src/affichage.o
 
-menu.o: menu.c menu.h jeu.h
-	$(CC) $(CFLAGS) -c menu.c
+src/menu.o: src/menu.c src/menu.h src/jeu.h
+	$(CC) $(CFLAGS) -c src/menu.c -o src/menu.o
 
-jeu.o: jeu.c jeu.h affichage.h sauvegarde.h menu.h
-	$(CC) $(CFLAGS) -c jeu.c
+src/jeu.o: src/jeu.c src/jeu.h src/affichage.h src/sauvegarde.h src/menu.h
+	$(CC) $(CFLAGS) -c src/jeu.c -o src/jeu.o
 
-sauvegarde.o: sauvegarde.c sauvegarde.h
-	$(CC) $(CFLAGS) -c sauvegarde.c
+src/sauvegarde.o: src/sauvegarde.c src/sauvegarde.h
+	$(CC) $(CFLAGS) -c src/sauvegarde.c -o src/sauvegarde.o
 
 # Règle pour nettoyer les fichiers objets et binaires
 clean:
-	rm -f *.o tetris
+	rm -f src/*.o tetris
 
 # Règle pour réinitialiser le jeu
 reset_game:
@@ -80,14 +80,15 @@ test-compile:
 	@echo "Test de détection des bibliothèques SDL2..."
 	@echo "CFLAGS: $(CFLAGS)"
 	@echo "LDFLAGS: $(LDFLAGS)"
-	@$(CC) $(CFLAGS) -c main.c -o test_main.o
+	@$(CC) $(CFLAGS) -c src/main.c -o test_main.o
 	@rm -f test_main.o
 	@echo "✅ Compilation de test réussie"
 
 # Règle pour créer un package de distribution
 dist: clean
 	mkdir -p tetris-dist
-	cp *.c *.h Makefile README tetris-dist/
+	cp -r src/ tetris-dist/
+	cp Makefile README.md tetris-dist/
 	cp -r img/ tetris-dist/
 	cp -r data/ tetris-dist/
 	tar -czf tetris-sdl2.tar.gz tetris-dist/

@@ -5,6 +5,7 @@
 *.dylib
 *.dll
 *.exe
+src/*.o
 
 # Exécutable principal
 tetris

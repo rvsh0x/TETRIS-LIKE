@@ -81,13 +81,15 @@ make reset_game
 
 ```
 tetris/
-├── main.c              # Point d'entrée
-├── jeu.c/h             # Logique du jeu
-├── affichage.c/h       # Rendu graphique SDL2
-├── menu.c/h            # Menus et navigation
-├── sauvegarde.c/h      # Système de sauvegarde
-├── types.h             # Définitions des structures
+├── src/                # Code source
+│   ├── main.c          # Point d'entrée
+│   ├── jeu.c/h         # Logique du jeu
+│   ├── affichage.c/h   # Rendu graphique SDL2
+│   ├── menu.c/h        # Menus et navigation
+│   ├── sauvegarde.c/h  # Système de sauvegarde
+│   └── types.h         # Définitions des structures
 ├── Makefile            # Configuration de compilation
+├── README.md           # Documentation
 ├── img/                # Images du jeu
 │   ├── Tetris_Home.png
 │   ├── Tetris_Menu.png
