@@ -1,4 +1,4 @@
-# Tetris SDL2
+# Tetris Like SDL2
 
 Réimplémentation du classique Tetris en C avec des fonctionnalités modernes. Inclut des modes de jeu personnalisés, un système de score avancé, système de sauvegarde, et effets visuels innovants.
 
